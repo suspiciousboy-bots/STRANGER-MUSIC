@@ -26,18 +26,18 @@ API_HASH = getenv("API_HASH")
 BOT_TOKEN = getenv("BOT_TOKEN")
 
 # Bot and owner info
-OWNER_USERNAME = getenv("OWNER_USERNAME", "SHIVANSHDEVS")
-BOT_USERNAME = getenv("BOT_USERNAME", "SapnaMusicRobot")
-BOT_NAME = getenv("BOT_NAME", "SAPNA")
-ASSUSERNAME = getenv("ASSUSERNAME", "KHWAAISH_HOON")
+OWNER_USERNAME = getenv("OWNER_USERNAME", "OfficialCrazyBoyX")
+BOT_USERNAME = getenv("BOT_USERNAME", "pikachuuXmusic_Bot")
+BOT_NAME = getenv("BOT_NAME", "─˹ 𝘗𝘪𝘬𝘢𝘤𝘩𝘶 ✗ 𝘔𝘶𝘴𝘪𝘤 ˼─")
+ASSUSERNAME = getenv("ASSUSERNAME", "aadiXassistant")
 
 # MongoDB
 MONGO_DB_URI = getenv("MONGO_DB_URI", None)
 
 # Limits and IDs
 DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 17000))
-LOGGER_ID = int(getenv("LOGGER_ID", -1002018556839))
-OWNER_ID = int(getenv("OWNER_ID", 6762113050))
+LOGGER_ID = int(getenv("LOGGER_ID", -1003401639448))
+OWNER_ID = int(getenv("OWNER_ID", 7065156396))
 
 # Heroku
 HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
@@ -50,8 +50,8 @@ UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "main")
 GIT_TOKEN = getenv("GIT_TOKEN", None)
 
 # Support
-SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/ITSZSHUKLA")
-SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/MASTIWITHFRIENDSXD")
+SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/PikachuuBotUpdates")
+SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/+UhZo8ZsUECYyYWI1")
 
 # Assistant settings
 AUTO_LEAVING_ASSISTANT = getenv("AUTO_LEAVING_ASSISTANT", "True")
@@ -93,28 +93,28 @@ DEBUG_IGNORE_LOG = True
 
 ###### IMAGE URLS ######
 
-START_IMG_URL = getenv("START_IMG_URL", "https://files.catbox.moe/ak96mx.jpg")
-PING_IMG_URL = getenv("PING_IMG_URL", "https://files.catbox.moe/ak96mx.jpg")
-PLAYLIST_IMG_URL = "https://files.catbox.moe/lrwbj6.jpg"
-STATS_IMG_URL = "https://files.catbox.moe/ak96mx.jpg"
-TELEGRAM_AUDIO_URL = "https://files.catbox.moe/aesldg.jpg"
-TELEGRAM_VIDEO_URL = "https://files.catbox.moe/aesldg.jpg"
-STREAM_IMG_URL = "https://files.catbox.moe/aesldg.jpg"
-SOUNCLOUD_IMG_URL = "https://files.catbox.moe/aesldg.jpg"
-YOUTUBE_IMG_URL = "https://files.catbox.moe/aesldg.jpg"
-SPOTIFY_ARTIST_IMG_URL = "https://files.catbox.moe/aesldg.jpg"
-SPOTIFY_ALBUM_IMG_URL = "https://files.catbox.moe/aesldg.jpg"
-SPOTIFY_PLAYLIST_IMG_URL = "https://files.catbox.moe/aesldg.jpg"
+START_IMG_URL = getenv("START_IMG_URL", "https://files.catbox.moe/68h020.jpg")
+PING_IMG_URL = getenv("PING_IMG_URL", "https://files.catbox.moe/wa6lsq.jpg")
+PLAYLIST_IMG_URL = "https://files.catbox.moe/dgxh0u.jpg"
+STATS_IMG_URL = "https://files.catbox.moe/tz04ik.jpg"
+TELEGRAM_AUDIO_URL = "https://files.catbox.moe/qknds4.jpg"
+TELEGRAM_VIDEO_URL = "https://files.catbox.moe/csq2et.jpg"
+STREAM_IMG_URL = "https://files.catbox.moe/fkqohn.jpg"
+SOUNCLOUD_IMG_URL = "https://files.catbox.moe/3lu5m3.jpg"
+YOUTUBE_IMG_URL = "https://files.catbox.moe/6zpcjt.jpg"
+SPOTIFY_ARTIST_IMG_URL = "https://files.catbox.moe/x6jdbm.jpg"
+SPOTIFY_ALBUM_IMG_URL = "https://files.catbox.moe/h9gqcn.jpg"
+SPOTIFY_PLAYLIST_IMG_URL = "https://files.catbox.moe/t281k7.jpg"
 
 
 SHASHANK_IMG = [
-    "https://files.catbox.moe/dw0as6.jpg",
-    "https://files.catbox.moe/t2m1pv.jpg",
-    "https://files.catbox.moe/lsbotb.jpg",
-    "https://files.catbox.moe/huuy1f.jpg",
-    "https://files.catbox.moe/7vfivr.jpg",
-    "https://files.catbox.moe/dqtuv2.jpg",
-    "https://files.catbox.moe/ac3tzn.jpg"
+    "https://files.catbox.moe/tz04ik.jpg",
+    "https://files.catbox.moe/fkqohn.jpg",
+    "https://files.catbox.moe/3lu5m3.jpg",
+    "https://files.catbox.moe/6zpcjt.jpg",
+    "https://files.catbox.moe/2u4e04.jpg",
+    "https://files.catbox.moe/ahrm9d.jpg",
+    "https://files.catbox.moe/wj02sq.jpg"
 ]
 
 
