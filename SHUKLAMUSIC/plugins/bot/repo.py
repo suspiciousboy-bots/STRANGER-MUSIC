@@ -34,10 +34,10 @@ async def repo_handler(_, msg):
     buttons = [
         [InlineKeyboardButton("➕ ᴀᴅᴅ ᴍᴇ ʙᴀʙʏ", url=f"https://t.me/{app.username}?startgroup=true")],
         [
-            InlineKeyboardButton("💬 sᴜᴘᴘᴏʀᴛ", url="https://t.me/MASTIWITHFRIENDSXD"),
-            InlineKeyboardButton("👤 ᴏᴡɴᴇʀ", url="https://t.me/SHASHANKDEVS"),
+            InlineKeyboardButton("💬 sᴜᴘᴘᴏʀᴛ", url="https://t.me/PikachuuBotUpdates"),
+            InlineKeyboardButton("👤 ᴏᴡɴᴇʀ", url="https://t.me/OfficialCrazyBoyX"),
         ],
-        [InlineKeyboardButton("🧾 ᴜᴘᴅᴀᴛᴇs", url="https://t.me/ITSZSHUKLA")],
+        [InlineKeyboardButton("🧾 ᴜᴘᴅᴀᴛᴇs", url="https://t.me/PikachuuBotUpdates")],
         [
             InlineKeyboardButton("💥 ʙᴀɴᴀʟʟ", url="https://github.com/itzshukla/STRANGER-BANALL/fork"),
             InlineKeyboardButton("🎧 ᴍᴜsɪᴄ V2", url="https://github.com/itzshukla/STRANGER-MUSIC/fork"),
