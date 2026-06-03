@@ -1,0 +1,29 @@
+services:
+  - type: worker
+    name: shuklamusic-bot
+    runtime: image
+    repo: https://github.com/YOUR_USERNAME/YOUR_REPO
+    plan: free
+    region: singapore
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: OWNER_ID
+        sync: fale
+      - key: STRING1
+        sync: false
+      - key: STRING2
+        sync: false
+      - key: STRING3
+        sync: false
+      - key: STRING4
+        sync: false
+      - key: STRING5
+        sync: false
+      - key: MONGO_DB_URI
+        sync: false
+      - key: LOG_GROUP_ID
+        sync: false
+      - key: BOT_USERNAME
+        sync: false
