@@ -12,136 +12,113 @@
 # ❤️ Made with dedication and love by ItzShukla
 # -----------------------------------------------
 import asyncio
-import importlib
+import shlex
 import os
-import time
-from pyrogram.errors import FloodWait
-from SHUKLAMUSIC import LOGGER, app, userbot, call
-from SHUKLAMUSIC.core.bot import bot
-from SHUKLAMUSIC.misc import dbb, sudo, heroku
-from SHUKLAMUSIC.core.git import git
+from typing import Tuple
+from git import Repo
+from git.exc import GitCommandError, InvalidGitRepositoryError
 import config
+import logging
 
-# Start time
-START_TIME = time.time()
+# Get logger without circular import
+LOGGER = logging.getLogger(__name__)
 
-async def init():
+
+def install_req(cmd: str) -> Tuple[str, str, int, int]:
+    async def install_requirements():
+        args = shlex.split(cmd)
+        process = await asyncio.create_subprocess_exec(
+            *args,
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE,
+        )
+        stdout, stderr = await process.communicate()
+        return (
+            stdout.decode("utf-8", "replace").strip(),
+            stderr.decode("utf-8", "replace").strip(),
+            process.returncode,
+            process.pid,
+        )
+
+    return asyncio.get_event_loop().run_until_complete(install_requirements())
+
+
+def git():
+    # Check if we are in a git repository
+    if not os.path.exists(".git"):
+        LOGGER.info("📦 Not a git repository - skipping git operations on Railway")
+        return
+    
+    REPO_LINK = config.UPSTREAM_REPO
+    if config.GIT_TOKEN:
+        GIT_USERNAME = REPO_LINK.split("com/")[1].split("/")[0]
+        TEMP_REPO = REPO_LINK.split("https://")[1]
+        UPSTREAM_REPO = f"https://{GIT_USERNAME}:{config.GIT_TOKEN}@{TEMP_REPO}"
+    else:
+        UPSTREAM_REPO = config.UPSTREAM_REPO
+    
     try:
-        # Add delay to prevent rate limiting on Railway
-        LOGGER(__name__).info("⏳ Waiting 10 seconds before starting...")
-        await asyncio.sleep(10)
+        repo = Repo()
+        LOGGER.info(f"Git Client Found [VPS DEPLOYER]")
         
-        # Load database
-        dbb()
-        
-        # Git operations - will skip if not in git repo
+        # Fetch updates if on VPS
         try:
-            git()
-        except Exception as e:
-            LOGGER(__name__).warning(f"⚠️ Git operation skipped: {e}")
+            origin = repo.remote("origin")
+            origin.fetch()
+            LOGGER.info(f"🔄 Fetching updates from upstream repository...")
+        except GitCommandError as e:
+            if "could not read Username" in str(e):
+                LOGGER.warning("⚠️ Git authentication failed - skipping fetch")
+            else:
+                LOGGER.warning(f"⚠️ Git fetch error: {e}")
+                
+    except GitCommandError as e:
+        LOGGER.warning(f"⚠️ Invalid Git Command: {e}")
         
-        # Heroku operations - disabled for Railway
+    except InvalidGitRepositoryError:
         try:
-            heroku()
-        except Exception as e:
-            LOGGER(__name__).warning(f"⚠️ Heroku operation skipped: {e}")
-        
-        # Load sudo users
-        await sudo()
-        
-        # Start bot
-        LOGGER(__name__).info("🤖 Starting Bot...")
-        await app.start()
-        
-        # Start userbot (assistant)
-        LOGGER(__name__).info("👤 Starting Userbot...")
-        await userbot.start()
-        
-        # Start voice calls
-        LOGGER(__name__).info("🎵 Starting Voice Calls...")
-        await call.start()
-        
-        # Load all plugins
-        LOGGER(__name__).info("📦 Loading Plugins...")
-        all_modules = ""
-        plugins_path = "SHUKLAMUSIC/plugins"
-        
-        if os.path.exists(plugins_path):
-            for module in os.listdir(plugins_path):
-                if module.endswith(".py") and module != "__init__.py":
-                    module_name = module[:-3]
-                    all_modules += f"SHUKLAMUSIC.plugins.{module_name}, "
-                    try:
-                        importlib.import_module(f"SHUKLAMUSIC.plugins.{module_name}")
-                    except Exception as e:
-                        LOGGER(__name__).warning(f"⚠️ Failed to load plugin {module_name}: {e}")
-        
-        if all_modules:
-            LOGGER(__name__).info(f"✅ Loaded Modules: {all_modules[:-2]}")
-        else:
-            LOGGER(__name__).info("✅ No plugins found to load")
-        
-        # Send startup message to log group
-        try:
-            await app.send_message(
-                config.LOG_GROUP_ID,
-                f"✅ **{config.BOT_NAME} Started Successfully!**\n\n"
-                f"• **Bot:** @{config.BOT_USERNAME}\n"
-                f"• **Owner:** @{config.OWNER_USERNAME}\n"
-                f"• **Started at:** {time.strftime('%Y-%m-%d %H:%M:%S')}\n"
-                f"• **Platform:** Railway\n"
-                f"• **Status:** 🟢 Online"
-            )
-        except Exception as e:
-            LOGGER(__name__).warning(f"⚠️ Could not send startup message: {e}")
-        
-        LOGGER(__name__).info(f"🎵 {config.BOT_NAME} Started Successfully!")
-        
-    except FloodWait as e:
-        wait_time = e.x
-        LOGGER(__name__).warning(f"⚠️ FloodWait: Telegram says wait {wait_time} seconds")
-        LOGGER(__name__).info(f"⏳ Sleeping for {wait_time} seconds...")
-        await asyncio.sleep(wait_time)
-        LOGGER(__name__).info("🔄 Retrying after FloodWait...")
-        await init()
-        
-    except Exception as e:
-        LOGGER(__name__).error(f"❌ Error during initialization: {e}")
-        LOGGER(__name__).info("🔄 Retrying in 60 seconds...")
-        await asyncio.sleep(60)
-        await init()
-
-
-async def shutdown():
-    LOGGER(__name__).info("🛑 Shutting down...")
-    try:
-        await app.stop()
-        await userbot.stop()
-        await call.stop()
-        LOGGER(__name__).info("✅ Shutdown complete!")
-    except Exception as e:
-        LOGGER(__name__).error(f"❌ Error during shutdown: {e}")
-
-
-async def main():
-    try:
-        await init()
-        
-        # Keep the bot running
-        while True:
-            await asyncio.sleep(1)
+            LOGGER.info(f"📦 Initializing git repository...")
+            repo = Repo.init()
             
-    except KeyboardInterrupt:
-        await shutdown()
+            if "origin" in repo.remotes:
+                origin = repo.remote("origin")
+            else:
+                origin = repo.create_remote("origin", UPSTREAM_REPO)
+            
+            origin.fetch()
+            repo.create_head(
+                config.UPSTREAM_BRANCH,
+                origin.refs[config.UPSTREAM_BRANCH],
+            )
+            repo.heads[config.UPSTREAM_BRANCH].set_tracking_branch(
+                origin.refs[config.UPSTREAM_BRANCH]
+            )
+            repo.heads[config.UPSTREAM_BRANCH].checkout(True)
+            
+            try:
+                repo.create_remote("origin", config.UPSTREAM_REPO)
+            except BaseException:
+                pass
+                
+            nrs = repo.remote("origin")
+            nrs.fetch(config.UPSTREAM_BRANCH)
+            
+            try:
+                nrs.pull(config.UPSTREAM_BRANCH)
+            except GitCommandError:
+                repo.git.reset("--hard", "FETCH_HEAD")
+                
+            install_req("pip3 install --no-cache-dir -r requirements.txt")
+            LOGGER.info(f"✅ Git repository initialized successfully!")
+            
+        except GitCommandError as e:
+            if "could not read Username" in str(e):
+                LOGGER.warning("⚠️ Git authentication failed - skipping git operations")
+            else:
+                LOGGER.warning(f"⚠️ Git error: {e}")
+                
+        except Exception as e:
+            LOGGER.warning(f"⚠️ Git initialization skipped: {e}")
+            
     except Exception as e:
-        LOGGER(__name__).error(f"❌ Fatal error: {e}")
-        await shutdown()
-
-
-if __name__ == "__main__":
-    try:
-        asyncio.get_event_loop().run_until_complete(main())
-    except KeyboardInterrupt:
-        pass
-    except Exception as e:
-        LOGGER(__name__).error(f"❌ Fatal error: {e}")
+        LOGGER.warning(f"⚠️ Git operation skipped: {e}")
