@@ -28,79 +28,80 @@ logging.basicConfig(
     ],
 )
 
+# Create LOGGER properly
 LOGGER = logging.getLogger(__name__)
 
 # Import config
 try:
     import config
 except ImportError as e:
-    LOGGER(__name__).error(f"❌ Could not import config: {e}")
+    LOGGER.error(f"❌ Could not import config: {e}")
     sys.exit(1)
 
 # Import core modules with error handling
 try:
     from SHUKLAMUSIC.core.bot import SHUKLA
     from SHUKLAMUSIC.core.dir import dirr
-    from SHUKLAMUSIC.core.git import git
     from SHUKLAMUSIC.core.userbot import Userbot
     from SHUKLAMUSIC.misc import dbb, heroku
 except ImportError as e:
-    LOGGER(__name__).error(f"❌ Could not import core modules: {e}")
+    LOGGER.error(f"❌ Could not import core modules: {e}")
     sys.exit(1)
 
 # Initialize directories
 try:
     dirr()
-    LOGGER(__name__).info("✅ Directories initialized")
+    LOGGER.info("✅ Directories initialized")
 except Exception as e:
-    LOGGER(__name__).warning(f"⚠️ Could not initialize directories: {e}")
+    LOGGER.warning(f"⚠️ Could not initialize directories: {e}")
 
 # Initialize database
 try:
     dbb()
-    LOGGER(__name__).info("✅ Database initialized")
+    LOGGER.info("✅ Database initialized")
 except Exception as e:
-    LOGGER(__name__).warning(f"⚠️ Could not initialize database: {e}")
+    LOGGER.warning(f"⚠️ Could not initialize database: {e}")
 
-# Git operations - will skip if not in git repo
+# Git operations - import and run after everything else is set up
 try:
+    from SHUKLAMUSIC.core.git import git
     git()
 except Exception as e:
-    LOGGER(__name__).warning(f"⚠️ Git operation skipped: {e}")
+    LOGGER.warning(f"⚠️ Git operation skipped: {e}")
 
 # Heroku operations - disabled for Railway
 try:
     heroku()
 except Exception as e:
-    LOGGER(__name__).warning(f"⚠️ Heroku operation skipped: {e}")
+    LOGGER.warning(f"⚠️ Heroku operation skipped: {e}")
 
 # Initialize bot and userbot
 try:
     app = SHUKLA()
-    LOGGER(__name__).info("✅ Bot initialized")
+    LOGGER.info("✅ Bot initialized")
 except Exception as e:
-    LOGGER(__name__).error(f"❌ Could not initialize bot: {e}")
+    LOGGER.error(f"❌ Could not initialize bot: {e}")
     sys.exit(1)
 
 try:
     userbot = Userbot()
-    LOGGER(__name__).info("✅ Userbot initialized")
+    LOGGER.info("✅ Userbot initialized")
 except Exception as e:
-    LOGGER(__name__).warning(f"⚠️ Could not initialize userbot: {e}")
+    LOGGER.warning(f"⚠️ Could not initialize userbot: {e}")
     userbot = None
 
 # Initialize APIs
 try:
     from SafoneAPI import SafoneAPI
     api = SafoneAPI()
-    LOGGER(__name__).info("✅ API initialized")
+    LOGGER.info("✅ API initialized")
 except Exception as e:
-    LOGGER(__name__).warning(f"⚠️ Could not initialize API: {e}")
+    LOGGER.warning(f"⚠️ Could not initialize API: {e}")
     api = None
 
 # Initialize platforms
 try:
-    from .platforms import *
+    from SHUKLAMUSIC.platforms import *
     Apple = AppleAPI()
     Carbon = CarbonAPI()
     SoundCloud = SoundAPI()
@@ -108,22 +109,21 @@ try:
     Resso = RessoAPI()
     Telegram = TeleAPI()
     YouTube = YouTubeAPI()
-    LOGGER(__name__).info("✅ Platforms initialized")
+    LOGGER.info("✅ Platforms initialized")
 except Exception as e:
-    LOGGER(__name__).warning(f"⚠️ Could not initialize platforms: {e}")
+    LOGGER.warning(f"⚠️ Could not initialize platforms: {e}")
 
 APP = "InflexOwnerBot"  # connect music api key "Dont change it"
 
 # Test MongoDB connection
 try:
     from SHUKLAMUSIC.core.mongo import mongodb
-    # Try to ping the database
     mongodb.command('ping')
-    LOGGER(__name__).info("✅ MongoDB connection established")
+    LOGGER.info("✅ MongoDB connection established")
 except Exception as e:
-    LOGGER(__name__).warning(f"⚠️ MongoDB connection failed: {e}")
+    LOGGER.warning(f"⚠️ MongoDB connection failed: {e}")
 
-LOGGER(__name__).info(f"🚀 Starting {config.BOT_NAME}...")
-LOGGER(__name__).info(f"👤 Owner: @{config.OWNER_USERNAME}")
-LOGGER(__name__).info(f"🤖 Bot: @{config.BOT_USERNAME}")
-LOGGER(__name__).info(f"📦 Platform: Railway")
+LOGGER.info(f"🚀 Starting {config.BOT_NAME}...")
+LOGGER.info(f"👤 Owner: @{config.OWNER_USERNAME}")
+LOGGER.info(f"🤖 Bot: @{config.BOT_USERNAME}")
+LOGGER.info(f"📦 Platform: Railway")
