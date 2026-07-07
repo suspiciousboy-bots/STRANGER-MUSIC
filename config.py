@@ -1,6 +1,6 @@
 # -----------------------------------------------
-# 🔸 StrangerMusic Project
-# 🔹 Developed & Maintained by: Shashank Shukla (https://github.com/itzshukla)
+# 🔸 SonamxMusic Project
+# 🔹 Developed & Maintained by: OfficiallyCrazyBoy07
 # 📅 Copyright © 2022 – All Rights Reserved
 #
 # 📖 License:
@@ -9,7 +9,7 @@
 # Commercial use, redistribution, or removal of this notice is strictly prohibited
 # without prior written permission from the author.
 #
-# ❤️ Made with dedication and love by ItzShukla
+# ❤️ Made with dedication and love by OfficiallyCrazyBoy07
 # -----------------------------------------------
 
 import re
@@ -26,35 +26,41 @@ API_HASH = getenv("API_HASH")
 BOT_TOKEN = getenv("BOT_TOKEN")
 
 # Bot and owner info
-OWNER_USERNAME = getenv("OWNER_USERNAME", "OfficialCrazyBoyX")
-BOT_USERNAME = getenv("BOT_USERNAME", "pikachuuXmusic_Bot")
-BOT_NAME = getenv("BOT_NAME", "─˹ 𝘗𝘪𝘬𝘢𝘤𝘩𝘶 ✗ 𝘔𝘶𝘴𝘪𝘤 ˼─")
-ASSUSERNAME = getenv("ASSUSERNAME", "aadiXassistant")
+OWNER_USERNAME = getenv("OWNER_USERNAME", "OfficiallyCrazyBoy07")
+BOT_USERNAME = getenv("BOT_USERNAME", "SonamxMusic_bot")
+BOT_NAME = getenv("BOT_NAME", "˹ 𝐒ᴏɴᴀᴍ ꭙ 𝐌ᴜꜱɪᴄ ♪˼ [ ɴᴏ ᴀᴅꜱ ]")
+ASSUSERNAME = getenv("ASSUSERNAME", "Somewhere_Yours")
 
 # MongoDB
 MONGO_DB_URI = getenv("MONGO_DB_URI", None)
 
 # Limits and IDs
-DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 17000))
+DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 300))
 LOGGER_ID = int(getenv("LOGGER_ID", -1003401639448))
-OWNER_ID = int(getenv("OWNER_ID", 7065156396))
+OWNER_ID = int(getenv("OWNER_ID", 7790607144))
 
 # Heroku
 HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
 HEROKU_API_KEY = getenv("HEROKU_API_KEY")
-DEEP_API = getenv("DEEP_API")
 
 # Git
-UPSTREAM_REPO = getenv("UPSTREAM_REPO", "https://github.com/itzshukla/STRANGER-MUSIC")
+UPSTREAM_REPO = getenv("UPSTREAM_REPO", "https://github.com/NoxxOP/PikachuMusic")
 UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "main")
 GIT_TOKEN = getenv("GIT_TOKEN", None)
 
 # Support
-SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/PikachuuBotUpdates")
-SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/+UhZo8ZsUECYyYWI1")
+SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/CrazyyCore")
+SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/+Fgx6_JRTLkFjMjE1")
+
+# Social Links
+INSTAGRAM = getenv("INSTAGRAM", "https://instagram.com/yaduwanshi_nand")
+YOUTUBE = getenv("YOUTUBE", "https://youtube.com/@NandEditz")
+GITHUB = getenv("GITHUB", "https://github.com/NoxxOP")
+DONATE = getenv("DONATE", "https://t.me/PikachuBots/91")
+PRIVACY_LINK = getenv("PRIVACY_LINK", "https://graph.org/Privacy-Policy-05-01-30")
 
 # Assistant settings
-AUTO_LEAVING_ASSISTANT = getenv("AUTO_LEAVING_ASSISTANT", "True")
+AUTO_LEAVING_ASSISTANT = getenv("AUTO_LEAVING_ASSISTANT", "False")
 AUTO_LEAVE_ASSISTANT_TIME = int(getenv("ASSISTANT_LEAVE_TIME", "9000"))
 
 # Song download limits
@@ -69,8 +75,8 @@ SPOTIFY_CLIENT_SECRET = getenv("SPOTIFY_CLIENT_SECRET", "709e1a2969664491b582008
 PLAYLIST_FETCH_LIMIT = int(getenv("PLAYLIST_FETCH_LIMIT", 25))
 
 # Telegram file limits
-TG_AUDIO_FILESIZE_LIMIT = int(getenv("TG_AUDIO_FILESIZE_LIMIT", "5242880000"))
-TG_VIDEO_FILESIZE_LIMIT = int(getenv("TG_VIDEO_FILESIZE_LIMIT", "5242880000"))
+TG_AUDIO_FILESIZE_LIMIT = int(getenv("TG_AUDIO_FILESIZE_LIMIT", "104857600"))
+TG_VIDEO_FILESIZE_LIMIT = int(getenv("TG_VIDEO_FILESIZE_LIMIT", "2145386496"))
 
 # Session strings
 STRING1 = getenv("STRING_SESSION", None)
@@ -78,8 +84,6 @@ STRING2 = getenv("STRING_SESSION2", None)
 STRING3 = getenv("STRING_SESSION3", None)
 STRING4 = getenv("STRING_SESSION4", None)
 STRING5 = getenv("STRING_SESSION5", None)
-STRING6 = getenv("STRING_SESSION6", None)
-STRING7 = getenv("STRING_SESSION7", None)
 
 # Miscellaneous
 BANNED_USERS = filters.user()
@@ -89,34 +93,37 @@ votemode = {}
 autoclean = []
 confirmer = {}
 
-DEBUG_IGNORE_LOG = True
+TEMP_DB_FOLDER = "tempdb"
 
 ###### IMAGE URLS ######
 
-START_IMG_URL = getenv("START_IMG_URL", "https://files.catbox.moe/68h020.jpg")
-PING_IMG_URL = getenv("PING_IMG_URL", "https://files.catbox.moe/wa6lsq.jpg")
-PLAYLIST_IMG_URL = "https://files.catbox.moe/dgxh0u.jpg"
-STATS_IMG_URL = "https://files.catbox.moe/tz04ik.jpg"
-TELEGRAM_AUDIO_URL = "https://files.catbox.moe/qknds4.jpg"
-TELEGRAM_VIDEO_URL = "https://files.catbox.moe/csq2et.jpg"
-STREAM_IMG_URL = "https://files.catbox.moe/fkqohn.jpg"
-SOUNCLOUD_IMG_URL = "https://files.catbox.moe/3lu5m3.jpg"
-YOUTUBE_IMG_URL = "https://files.catbox.moe/6zpcjt.jpg"
-SPOTIFY_ARTIST_IMG_URL = "https://files.catbox.moe/x6jdbm.jpg"
-SPOTIFY_ALBUM_IMG_URL = "https://files.catbox.moe/h9gqcn.jpg"
-SPOTIFY_PLAYLIST_IMG_URL = "https://files.catbox.moe/t281k7.jpg"
+START_IMG_URL = getenv("START_IMG_URL", "https://i.ibb.co/Y4S2BqzS/file-127.jpg")
+PING_IMG_URL = getenv("PING_IMG_URL", "https://i.ibb.co/hJqZFsDq/file-128.jpg")
+PLAYLIST_IMG_URL = "https://i.ibb.co/zHxhxwBS/file-129.jpg"
+STATS_IMG_URL = "https://i.ibb.co/Y4S2BqzS/file-127.jpg"
+TELEGRAM_AUDIO_URL = "https://i.ibb.co/JWSQ6MGL/file-130.jpg"
+TELEGRAM_VIDEO_URL = "https://i.ibb.co/sdQ4JD18/file-131.jpg"
+STREAM_IMG_URL = "https://i.ibb.co/NnG7CqQm/file-132.jpg"
+SOUNCLOUD_IMG_URL = "https://i.ibb.co/JWDVyMVj/file-133.jpg"
+YOUTUBE_IMG_URL = "https://i.ibb.co/HpnxqJmW/file-134.jpg"
+SPOTIFY_ARTIST_IMG_URL = "https://i.ibb.co/ccnMkytM/file-135.jpg"
+SPOTIFY_ALBUM_IMG_URL = "https://i.ibb.co/FqJMHkTS/file-136.jpg"
+SPOTIFY_PLAYLIST_IMG_URL = "https://i.ibb.co/YBv9W98j/file-138.jpg"
 
-
+# Random image collection (unique images from the above collection)
 SHASHANK_IMG = [
-    "https://files.catbox.moe/tz04ik.jpg",
-    "https://files.catbox.moe/fkqohn.jpg",
-    "https://files.catbox.moe/3lu5m3.jpg",
-    "https://files.catbox.moe/6zpcjt.jpg",
-    "https://files.catbox.moe/2u4e04.jpg",
-    "https://files.catbox.moe/ahrm9d.jpg",
-    "https://files.catbox.moe/wj02sq.jpg"
+    "https://i.ibb.co/Y4S2BqzS/file-127.jpg",  # START_IMG_URL / STATS_IMG_URL
+    "https://i.ibb.co/hJqZFsDq/file-128.jpg",  # PING_IMG_URL
+    "https://i.ibb.co/zHxhxwBS/file-129.jpg",  # PLAYLIST_IMG_URL
+    "https://i.ibb.co/JWSQ6MGL/file-130.jpg",  # TELEGRAM_AUDIO_URL
+    "https://i.ibb.co/sdQ4JD18/file-131.jpg",  # TELEGRAM_VIDEO_URL
+    "https://i.ibb.co/NnG7CqQm/file-132.jpg",  # STREAM_IMG_URL
+    "https://i.ibb.co/JWDVyMVj/file-133.jpg",  # SOUNCLOUD_IMG_URL
+    "https://i.ibb.co/HpnxqJmW/file-134.jpg",  # YOUTUBE_IMG_URL
+    "https://i.ibb.co/ccnMkytM/file-135.jpg",  # SPOTIFY_ARTIST_IMG_URL
+    "https://i.ibb.co/FqJMHkTS/file-136.jpg",  # SPOTIFY_ALBUM_IMG_URL
+    "https://i.ibb.co/YBv9W98j/file-138.jpg"   # SPOTIFY_PLAYLIST_IMG_URL
 ]
-
 
 # Helper function
 def time_to_seconds(time: str) -> int:
