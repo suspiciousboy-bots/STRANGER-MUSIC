@@ -16,8 +16,8 @@ BOT_TOKEN = getenv("BOT_TOKEN")
 # Bot and owner info
 OWNER_USERNAME = getenv("OWNER_USERNAME", "OfficiallyCrazyBoy07")
 BOT_USERNAME = getenv("BOT_USERNAME", "SonamxMusic_bot")
-BOT_NAME = getenv("BOT_NAME", "─˹ 𝘚𝘰𝘯𝘢𝘮 ✗ 𝘔𝘶𝘴𝘪𝘤 ˼─")
-ASSUSERNAME = getenv("ASSUSERNAME", "SonamxAssistant")
+BOT_NAME = getenv("BOT_NAME", "˹ 𝐒ᴏɴᴀᴍ ꭙ 𝐌ᴜꜱɪᴄ ♪˼ [ ɴᴏ ᴀᴅꜱ ]")
+ASSUSERNAME = getenv("ASSUSERNAME", "Somewhere_Yours")
 
 # MongoDB
 MONGO_DB_URI = getenv("MONGO_DB_URI", None)
