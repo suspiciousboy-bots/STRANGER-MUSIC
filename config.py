@@ -28,9 +28,6 @@ LOGGER_ID = int(getenv("LOGGER_ID", -1003401639448))
 LOG_GROUP_ID = -1003401639448
 OWNER_ID = int(getenv("OWNER_ID", 7790607144))
 
-# Heroku (MUST HAVE THESE EVEN IF EMPTY)
-HEROKU_APP_NAME = getenv("HEROKU_APP_NAME", None)
-HEROKU_API_KEY = getenv("HEROKU_API_KEY", None)
 
 # Git
 UPSTREAM_REPO = getenv("UPSTREAM_REPO", "https://github.com/NoxxOP/PikachuMusic")
